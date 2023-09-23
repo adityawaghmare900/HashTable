@@ -1,10 +1,11 @@
-﻿namespace Binary_Tree_UC3
+﻿namespace SearchInBinaryTree
 {
     internal class MainBinaryTree
     {
         static void Main(string[] args)
         {
-            MyBinaryNode<int> myBinaryNode = new MyBinaryNode<int>(56);
+            Console.WriteLine("Hello, World!");
+            MyBinaryTree<int> myBinaryNode = new MyBinaryTree<int>(56);
             myBinaryNode.Insert(30);
             myBinaryNode.Insert(70);
             myBinaryNode.Insert(22);
@@ -19,7 +20,10 @@
             myBinaryNode.Insert(67);
             myBinaryNode.Display();
             Console.WriteLine("==============================================");
-            myBinaryNode.getSize();
+           // myBinaryNode.getSize();
+
+            bool result = myBinaryNode.IfExist(67, myBinaryNode);
+            Console.WriteLine(result);
         }
     }
 }
