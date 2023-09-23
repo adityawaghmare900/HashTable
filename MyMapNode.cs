@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hashtable_UC1
+namespace HashTable_UC3
 {
     public class MyMapNode<K, V>
     {
@@ -25,14 +25,6 @@ namespace Hashtable_UC1
         {
             public K key { get; set; }
             public V value { get; set; }
-        }
-
-        public void Add(K key, V value)
-        {
-            int position = GetArrayPosition(key);
-            LinkedList<KeyValue<K, V>> linkedlist = GetLinkedList(position);
-            KeyValue<K, V> item = new KeyValue<K, V>() { key = key, value = value };
-            linkedlist.AddLast(item);
         }
 
         protected int GetArrayPosition(K key)
@@ -76,45 +68,50 @@ namespace Hashtable_UC1
             int frequency = 0;
 
             // using foreach loop to get the value in linkedList
-            foreach(LinkedList<KeyValue<K,V>> list in items)
+            foreach (LinkedList<KeyValue<K, V>> list in items)
             {
                 if (list == null)
                     continue;
-                foreach(KeyValue<K,V> check in list)
+                foreach (KeyValue<K, V> check in list)
                 {
-                    if(check.Equals(null))
+                    if (check.Equals(null))
                     {
                         continue;
                     }
-                    if(check.value.Equals(value))
+                    if (check.value.Equals(value))
                     {
                         frequency++;
                     }
                 }
             }
         }
-       
-        
-        //public void Remove(K key)
-        //{
-        //    int position = GetArrayPosition(key);
-        //    LinkedList<KeyValue<K,V>> linkedlist = GetLinkedList(position);
-        //    bool itemFound = false;
-        //    KeyValue<K,V> foundItem=default(KeyValue<K,V>);
-        //    foreach(KeyValue<K,V> item in linkedlist)
-        //    {
-        //        if (item.key.Equals(key))
-        //        {
-        //            itemFound= true;
-        //            foundItem = item;
-        //        }
-        //    }
-        //    if (itemFound)
-        //    {
-        //        linkedlist.Remove(foundItem);
-        //    }
-        //}
+
+        public void Add(K key, V value)
+        {
+            int position = GetArrayPosition(key);
+            LinkedList<KeyValue<K, V>> linkedlist = GetLinkedList(position);
+            KeyValue<K, V> item = new KeyValue<K, V>() { key = key, value = value };
+            linkedlist.AddLast(item);
+        }
+
+        public void Remove(K key)
+        {
+            int position = GetArrayPosition(key);
+            LinkedList<KeyValue<K, V>> linkedlist = GetLinkedList(position);
+            bool itemFound = false;
+            KeyValue<K, V> foundItem = default(KeyValue<K, V>);
+            foreach (KeyValue<K, V> item in linkedlist)
+            {
+                if (item.key.Equals(key))
+                {
+                    itemFound = true;
+                    foundItem = item;
+                }
+            }
+            if (itemFound)
+            {
+                linkedlist.Remove(foundItem);
+            }
+        }
     }
-
-
 }
