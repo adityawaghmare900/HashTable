@@ -1,38 +1,23 @@
-﻿using System.Diagnostics;
-
-namespace TypesOfVaribales
+﻿namespace HashTable_UC2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            //There are five types of varibales
-            //1) int - it stores intergers number, withour decimals 
-            int num = 25;
-            Console.Write(num);
-
-            //2) double- it stores floating point numbers with decimals
-
-            double dob = 199.54D;
-            Console.Write(dob);
-
-            //3) char- it stores single charactor with single quotes
-            char ch= 'A';
-            char ch2 = 'B';
-            Console.Write(ch);
-            Console.Write(ch2);
-
-            //4) String - it stores sequence of charactors or it stores text
-            String str = "aditya";
-            String str2 = "waghmare";
-            Console.Write(str);
-            Console.Write(str2);
-
-            //5) bool- it store with two states: true of false
-            bool a=true;
-            bool b = false;
-            Console.Write(a);
-            Console.Write(b);
+            string phrase = "Paranoids are not paranoid because they are paranod but because they keep putting themselves" +
+                " deliberately into paranoid avoidable situations";
+            int len=phrase.Length;
+           // LinkedList<string> list = new LinkedList<string>();
+            string []list= phrase.Split(' ');
+            int n = 0; ;
+            MyMapNode<int, String> hash = new MyMapNode<int, string>(len);
+            foreach (string s in list)
+            {
+                hash.Add(n, s);
+                n = n + 1;
+            }
+            string hash5 = hash.Get(5);
+            Console.WriteLine("5th index value: " + hash5);
         }
     }
 }
