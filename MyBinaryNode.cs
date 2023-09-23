@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Create_BST_UC1
+namespace Binary_Tree_UC3
 {
-    internal class BinarySearchTree<T> where T: IComparable<T>
+    internal class MyBinaryNode<T> where T: IComparable<T>
     {
-        public T NodeData { get; set; }
-        public BinarySearchTree<T> LeftTree { get; set; }
-        public BinarySearchTree<T> RightTree { get; set; }
-
-        public BinarySearchTree(T nodeData)
+        public T NodeData { get; set; } 
+        public MyBinaryNode<T> leftTree {  get; set; }
+        public MyBinaryNode<T> RightTree { get; set; }    
+        public MyBinaryNode(T nodeData)
         {
-            this.NodeData = nodeData;
-            this.LeftTree = null;
+            this.NodeData= nodeData;
+            this.leftTree = null;
             this.RightTree = null;
         }
 
@@ -27,36 +27,37 @@ namespace Create_BST_UC1
         public void Insert(T item)
         {
             T currentNodeValue = this.NodeData;
-            if (currentNodeValue.CompareTo(item) > 0)
+            if ((currentNodeValue.CompareTo(item)) > 0)
             {
-                if (this.LeftTree == null)
+                if (this.leftTree == null)
                 {
-                    this.LeftTree = new BinarySearchTree<T>(item);
+                    this.leftTree = new MyBinaryNode<T>(item);
                 }
                 else
                 {
-                    this.LeftTree.Insert(item);
+                    this.leftTree.Insert(item);
                 }
             }
             else
             {
-                if(this.RightTree == null)
+                if (this.RightTree == null)
                 {
-                    this.RightTree = new BinarySearchTree<T>(item);
+                    this.RightTree = new MyBinaryNode<T>(item);
                 }
                 else
-                { 
+                {
                     this.RightTree.Insert(item);
                 }
             }
+
         }
         
         public void Display()
         {
-            if(this.LeftTree!= null)
+            if (this.leftTree != null)
             {
-                this.leftCount++;
-                this.LeftTree.Display();
+                this.leftCount++; 
+                this.leftTree.Display();
             }
             Console.WriteLine(this.NodeData.ToString());
             if(this.RightTree!= null)
@@ -66,7 +67,9 @@ namespace Create_BST_UC1
             }
         }
 
-
-       
+        public void getSize()
+        {
+            Console.WriteLine("Size"+" "+(1+this.leftCount+this.rightCount));
+        }
     }
 }
